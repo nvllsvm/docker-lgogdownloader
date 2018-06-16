@@ -14,4 +14,4 @@ mkdir -p $XDG_CACHE_HOME $XDG_CONFIG_HOME
 ln -s /config $XDG_CONFIG_HOME/lgogdownloader
 ln -s /cache $XDG_CACHE_HOME/lgogdownloader
 
-su-exec $PUID:$PGID lgogdownloader --directory /downloads "$@"
+su-exec $PUID:$PGID /bin/sh -c "$@"

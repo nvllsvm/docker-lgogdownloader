@@ -30,4 +30,7 @@ VOLUME /config
 VOLUME /downloads
 
 COPY entrypoint.sh /entrypoint.sh
+COPY lgogdownloader.sh /usr/local/bin/lgogdownloader
+COPY sync.sh /sync.sh
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/sync.sh"]

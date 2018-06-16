@@ -14,11 +14,6 @@ Yet another [lgogdownloader](https://github.com/Sude-/lgogdownloader) Docker ima
 
 # Usage
 
-Pass command line arguments to ``docker run`` command as if you were calling
-the lgogdownloader executable directly. For example, passing
-``--download --save-serials`` will download missing and updated games to the 
-``/downloads`` volume.
-
 ```
 $ docker run \
     -e PUID=1000 \
