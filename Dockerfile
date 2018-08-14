@@ -2,7 +2,7 @@ FROM alpine:edge
 
 RUN \
     # Build deps
-    apk add help2man cmake make g++ curl-dev liboauth-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
+    apk add -t .dev help2man cmake make g++ curl-dev liboauth-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
     # Run Deps
     apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp liboauth rhash tinyxml2 curl shadow su-exec && \
     # Build and install htmlcxx
@@ -22,7 +22,7 @@ RUN \
     make install && \
     cd / && \
     rm -rf /htmlcxx* /lgogdownloader* && \
-    apk del help2man cmake make g++ curl-dev liboauth-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
+    apk del .dev && \
     # Setup wrapper to set --directory to /downloads
     mv /usr/bin/lgogdownloader /usr/bin/lgogdownloader_original && \
     printf '#!/usr/bin/env sh\n/usr/bin/lgogdownloader_original --directory /downloads "$@"' > /usr/bin/lgogdownloader && \
