@@ -14,9 +14,9 @@ RUN \
     make install && \
     cd / && \
     # Build and install lgogdownloader
-    curl --output lgogdownloader.tar.gz https://codeload.github.com/Sude-/lgogdownloader/tar.gz/v3.3 && \
+    curl --output lgogdownloader.tar.gz https://codeload.github.com/Sude-/lgogdownloader/tar.gz/v3.4 && \
     tar -xvf lgogdownloader.tar.gz && \
-    cd lgogdownloader-3.3 && \
+    cd lgogdownloader-3.4 && \
     cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release && \
     make && \
     make install && \
@@ -42,6 +42,5 @@ ENTRYPOINT \
     ln -s /cache $XDG_CACHE_HOME/lgogdownloader && \
     su-exec $PUID:$PGID /bin/sh -ec "$@"
 
-CMD lgogdownloader --update-check && \
-    lgogdownloader --download --save-serials && \
+CMD lgogdownloader --download --save-serials && \
     rm -rf $(lgogdownloader --check-orphans | grep ^/download)
