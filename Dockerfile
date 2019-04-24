@@ -1,4 +1,5 @@
 FROM alpine:edge
+ARG LGOGDOWNLOADER_VERSION=3.5
 
 RUN \
     # Build deps
@@ -14,9 +15,9 @@ RUN \
     make install && \
     cd / && \
     # Build and install lgogdownloader
-    curl --output lgogdownloader.tar.gz https://codeload.github.com/Sude-/lgogdownloader/tar.gz/v3.4 && \
+    curl --output lgogdownloader.tar.gz https://codeload.github.com/Sude-/lgogdownloader/tar.gz/v${LGOGDOWNLOADER_VERSION} && \
     tar -xvf lgogdownloader.tar.gz && \
-    cd lgogdownloader-3.4 && \
+    cd lgogdownloader-${LGOGDOWNLOADER_VERSION} && \
     cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release && \
     make && \
     make install && \
