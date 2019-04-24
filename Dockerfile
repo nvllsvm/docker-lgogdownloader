@@ -33,6 +33,8 @@ RUN \
 
 VOLUME /cache /config /downloads
 
+ENV PUID=1000 PGID=1000
+
 ENTRYPOINT \
     set -e && \
     chown $PUID:$PGID /cache /config /downloads && \
