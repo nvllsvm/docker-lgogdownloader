@@ -28,7 +28,8 @@ RUN \
     mv /usr/bin/lgogdownloader /usr/bin/lgogdownloader_original && \
     printf '#!/usr/bin/env sh\n/usr/bin/lgogdownloader_original --directory /downloads "$@"' > /usr/bin/lgogdownloader && \
     chmod +x /usr/bin/lgogdownloader && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    mkdir -m 777 /dummy
 
 VOLUME /cache /config /downloads
 
