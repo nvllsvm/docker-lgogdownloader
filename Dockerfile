@@ -1,11 +1,11 @@
-FROM alpine:edge
-ARG LGOGDOWNLOADER_VERSION=3.5
+FROM alpine
+ARG LGOGDOWNLOADER_VERSION=3.6
 
 RUN \
     # Build deps
-    apk add -t .dev help2man cmake make g++ curl-dev liboauth-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
+    apk add -t .dev help2man cmake make g++ curl-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
     # Run Deps
-    apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp liboauth rhash tinyxml2 curl shadow su-exec && \
+    apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp rhash tinyxml2 curl shadow && \
     # Build and install htmlcxx
     curl --output htmlcxx.tar.gz https://phoenixnap.dl.sourceforge.net/project/htmlcxx/htmlcxx/0.86/htmlcxx-0.86.tar.gz && \
     tar -xvf htmlcxx.tar.gz && \
@@ -29,7 +29,6 @@ RUN \
     printf '#!/usr/bin/env sh\n/usr/bin/lgogdownloader_original --directory /downloads "$@"' > /usr/bin/lgogdownloader && \
     chmod +x /usr/bin/lgogdownloader && \
     rm -rf /var/cache/apk/*
-
 
 VOLUME /cache /config /downloads
 
