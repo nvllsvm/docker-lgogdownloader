@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.15
 ARG LGOGDOWNLOADER_VERSION=3.9
 
 RUN \
