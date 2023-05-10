@@ -1,21 +1,24 @@
-FROM alpine:3.15
-ARG LGOGDOWNLOADER_VERSION=3.9
+FROM alpine:3.18
+ARG LGOGDOWNLOADER_VERSION=3.11
+ARG HTMLCXX_VERSION=0.87
 
+# note: https://pkgs.alpinelinux.org/package/edge/testing/x86/htmlcxx
 RUN \
     # Build deps
     apk add -t .dev help2man cmake make g++ curl-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
     # Run Deps
     apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp rhash tinyxml2 curl shadow && \
     # Build and install htmlcxx
-    curl --output htmlcxx.tar.gz https://phoenixnap.dl.sourceforge.net/project/htmlcxx/htmlcxx/0.86/htmlcxx-0.86.tar.gz && \
+    curl -L --output htmlcxx.tar.gz https://sourceforge.net/projects/htmlcxx/files/v${HTMLCXX_VERSION}/htmlcxx-${HTMLCXX_VERSION}.tar.gz/download && \
     tar -xvf htmlcxx.tar.gz && \
-    cd htmlcxx-0.86 && \
+    cd htmlcxx-${HTMLCXX_VERSION} && \
+    export CXXFLAGS="$CXXFLAGS -std=c++14" && \
     ./configure --prefix=/usr && \
     make && \
     make install && \
     cd / && \
     # Build and install lgogdownloader
-    curl --output lgogdownloader.tar.gz https://codeload.github.com/Sude-/lgogdownloader/tar.gz/v${LGOGDOWNLOADER_VERSION} && \
+    curl -L --output lgogdownloader.tar.gz https://github.com/Sude-/lgogdownloader/releases/download/v${LGOGDOWNLOADER_VERSION}/lgogdownloader-${LGOGDOWNLOADER_VERSION}.tar.gz && \
     tar -xvf lgogdownloader.tar.gz && \
     cd lgogdownloader-${LGOGDOWNLOADER_VERSION} && \
     cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release && \
