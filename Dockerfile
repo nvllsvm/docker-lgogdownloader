@@ -1,5 +1,5 @@
 FROM alpine:3.18
-ARG LGOGDOWNLOADER_VERSION=3.11
+ARG LGOGDOWNLOADER_VERSION=3.12
 ARG HTMLCXX_VERSION=0.87
 
 # note: https://pkgs.alpinelinux.org/package/edge/testing/x86/htmlcxx
