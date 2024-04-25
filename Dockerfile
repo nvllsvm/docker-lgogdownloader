@@ -45,5 +45,6 @@ ENTRYPOINT \
     ln -s /cache $XDG_CACHE_HOME/lgogdownloader && \
     exec /bin/sh -ec "$@"
 
-CMD lgogdownloader --download --save-serials && \
-    rm -rf $(lgogdownloader --check-orphans | grep ^/download)
+CMD lgogdownloader --update-cache && \
+    lgogdownloader --use-cache --download --save-serials && \
+    lgogdownloader --use-cache --check-orphans --delete-orphans
