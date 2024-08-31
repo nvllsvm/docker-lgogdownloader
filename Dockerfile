@@ -1,13 +1,13 @@
-FROM alpine:3.19
-ARG LGOGDOWNLOADER_VERSION=3.12
+FROM alpine:3.20
+ARG LGOGDOWNLOADER_VERSION=3.15
 ARG HTMLCXX_VERSION=0.87
 
 # note: https://pkgs.alpinelinux.org/package/edge/testing/x86/htmlcxx
 RUN \
     # Build deps
-    apk add -t .dev help2man cmake make g++ curl-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev && \
+    apk add -t .dev help2man cmake make g++ curl-dev jsoncpp-dev tinyxml2-dev rhash-dev boost-dev tidyhtml-dev && \
     # Run Deps
-    apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp rhash tinyxml2 curl shadow && \
+    apk add boost boost-program_options boost-iostreams boost-date_time jsoncpp rhash tinyxml2 curl shadow tidyhtml && \
     # Build and install htmlcxx
     curl -L --output htmlcxx.tar.gz https://sourceforge.net/projects/htmlcxx/files/v${HTMLCXX_VERSION}/htmlcxx-${HTMLCXX_VERSION}.tar.gz/download && \
     tar -xvf htmlcxx.tar.gz && \
