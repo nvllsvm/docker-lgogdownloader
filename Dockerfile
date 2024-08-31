@@ -22,7 +22,7 @@ RUN \
     tar -xvf lgogdownloader.tar.gz && \
     cd lgogdownloader-${LGOGDOWNLOADER_VERSION} && \
     cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release && \
-    make && \
+    make -j$(nproc) && \
     make install && \
     cd / && \
     rm -rf /htmlcxx* /lgogdownloader* && \
