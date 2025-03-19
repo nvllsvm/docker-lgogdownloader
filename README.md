@@ -14,5 +14,5 @@ $ docker run \
     -v /home/user/.cache/lgogdownloader:/cache \
     -v /home/user/.config/lgogdownloader:/config \
     -v /backup/GOG:/downloads \
-    nvllsvm/lgogdownloader
+    ghcr.io/nvllsvm/lgogdownloader
 ```
